@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify
-from db import get_all_fingerprints, save_fingerprint
+from db import get_all_fingerprints, save_fingerprint, delete_fingerprint
 from fingerprint import extract_fingerprint
 from match import match_song
 
@@ -44,8 +44,21 @@ def find_song():
 @app.route('/list_songs', methods=['GET'])
 def list_songs():
     songs = get_all_fingerprints()
-    song_list = [{"title": song[0]} for song in songs]
+    song_list = [{"title": song[0], "fingerprint": song[1]} for song in songs]
     return jsonify({"status": "success", "songs": song_list})
+
+# API untuk menghapus sebuah lagu
+@app.route('/delete-song', methods=['DELETE'])
+def delete_song():
+    data = request.get_json()
+    if not data or 'title' not in data:
+        return jsonify({"status": "error", "message": "Missing title"}), 400
+    
+    title = data['title']
+    if delete_fingerprint(title):
+        return jsonify({"status": "success", "message": f"Song {title} deleted!"})
+    else:
+        return jsonify({"status": "error", "message": "Song not found"}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)

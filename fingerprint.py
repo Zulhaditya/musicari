@@ -2,6 +2,7 @@ import librosa
 import numpy as np
 import hashlib
 
+# Fungsi untuk extrak fingerprint dari sebuah lagu
 def extract_fingerprint(file_path):
     y, sr = librosa.load(file_path, sr=None)
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
@@ -11,3 +12,4 @@ def extract_fingerprint(file_path):
     fingerprint_hash = hashlib.sha256(fingerprint.tobytes()).hexdigest()
 
     return fingerprint_hash
+
