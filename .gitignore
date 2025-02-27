@@ -3,9 +3,10 @@ env/
 venv/
 .venv/
 
-# Abaikan folder temp dan juga dataset
+# Abaikan folder project
 temp/
 dataset/
+uploads/
 
 # Abaikan file cache Python
 __pycache__/
