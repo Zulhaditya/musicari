@@ -1,0 +1,30 @@
+# Abaikan folder lingkungan virtual Python
+env/
+venv/
+.venv/
+
+# Abaikan folder temp dan juga dataset
+temp/
+dataset/
+
+# Abaikan file cache Python
+__pycache__/
+*.py[cod]
+
+# Abaikan file environment
+.env
+.env.local
+
+# Abaikan file log
+*.log
+
+# Abaikan folder distribusi
+dist/
+build/
+
+# Abaikan file konfigurasi IDE
+.vscode/
+.idea/
+
+# Abaikan file database SQLite
+*.sqlite3
